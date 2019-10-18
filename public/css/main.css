@@ -1,0 +1,148 @@
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+}
+
+main {
+    /* flex: 1; would be enough but it looks bad in IE */
+    display: flex;
+    flex: 1 0 auto; /*flex grow - flex shrink - flex basis*/
+
+}
+
+/* Unimportant part */
+
+body {
+    font: 16px/1.5 sans-serif;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+p {
+
+}
+header {
+    background-color: transparent;
+    padding: 1rem 2.5rem;
+}
+main {
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+footer {
+    background-color: #001F3F;
+    padding: 2em;
+    color: white;
+}
+nav{
+    background-color: white;
+}
+.top-nav-collapse{
+    background: rgb(8, 8, 8) !important; 
+    
+}
+nav ul {
+    margin: 0;
+}
+nav ul li {
+    padding: 0 1rem;
+    list-style-type: none;
+}
+.main-banner{
+    min-height: 500px;
+}
+.quienes-somos{
+  margin: 3rem 0;
+}
+.programas {
+    padding: 2rem;
+}
+
+.sub-title {
+    font-size: 20px;
+    color: rgba(255,255,255, 0.30);
+}
+.parallax {
+    background-image: url("images/adult-architect-blueprint-416405.jpg");
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.fondo-oscuro {
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    min-height: 300px;
+    color: white;
+}
+.carta-alta {
+    min-height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.carta-alta .bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.carta-alta .bg:hover{
+    transform: scale(1.1);
+    transition: all .6s;
+
+}
+.emprendimiento-bg {
+    background-image: url("images/architectural-design-architecture-buildings-2078774.jpg");
+}
+.propiedad-bg {
+    background-image: url("images/close-up-document-fountain-pen-48148.jpg");
+}
+.disruptiva-bg {
+    background-image: url("images/blur-codes-coding-577585.jpg");
+}
+.excelencia-bg {
+    background-image: url("images/charts-commerce-data-265087.jpg");
+}
+.investigacion-bg {
+    background-image: url("images/architect-businesswoman-composition-313691.jpg");
+}
+
+.logo-patrocinador{
+    width: 290px;
+    height: 70px;
+    margin: 0 3rem;
+}
+.logo-cucea-ecosistema{
+    height: 100px;
+    width: 300px;
+}
+.line-bg{
+
+}
+.des-ec-container{
+    padding: 4rem 3rem 4rem 5rem;
+}
+.miembro-ec-container{
+    padding: 3rem 3rem 3rem 10%;
+}
+.subH3{
+    font-family:  sans-serif;
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 1.8rem;
+    color: rgb(65, 46, 135);
+    letter-spacing: 0.5rem;
+}
+.titH1{
+    font-family: "Monserrat" sans-serif;
+    font-size: 65px;
+}
+.icono{
+    color: yellow;
+}
