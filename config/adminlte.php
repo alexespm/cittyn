@@ -130,18 +130,26 @@ return [
             'text' => 'search',
             'search' => true,
         ],
-        ['header' => 'main_navigation'],
+        ['header' => 'Edicion vista cittyn'],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'main-banner',
+            'url'         => 'admin/main_banner',
             'icon'        => 'far fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'helper',
+            'url'         => 'admin/helper',
+            'icon'        => 'far fa-file',
+        ],
+        [
+            'text'        => 'quienes-somos',
+            'url'         => 'admin/quienes-somos',
+            'icon'        => 'far fa-file',
         ],
         ['header' => 'account_settings'],
         [

@@ -21,16 +21,19 @@
         </ul>
     </nav>
 </header>
+
 <main>
     <section class="main-banner w-100">
-        <div style="background-image: url('images/CUCEA-Letras.jpg');background-position: bottom;min-height: 600px;background-size: cover">
+        @foreach($Banner as $ItemBanner)
+        <div style="background-image: url('images/{{$ItemBanner->imagen}}');background-position: bottom;min-height: 600px;background-size: cover">
             <div class="d-flex align-items-center fondo-oscuro" style="min-height: 600px">
                 <div class="d-flex flex-column col-6 p-5">
-                    <h1 class= "titH1"> Main banner title </h1>
-                    <p class="-title" style="color: rgba(255, 255, 255, 0.604);"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget magna at arcu tristique bibendum. </p>
+                    <h1 class= "titH1">{{$ItemBanner->titH1}}</h1>
+                    <p class="-title" style="color: rgba(255, 255, 255, 0.604);">{{$ItemBanner->title}}</p>
                 </div>
             </div>
         </div>
+        @endforeach  
     </section>
     <section class="helper">
         <div class="container">

@@ -13,51 +13,12 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Editar Contenido</h1>
+    <h1>contenido en la web</h1>
     <script src={{ asset('js/scripts.js') }}></script>
 @stop
 
-
-
 @section('content')
-    <div class="container col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2>Mensajes</h2>
-            </div>
-            @if ($mensajes->isEmpty())
-                <div>No hay Mensajes</div>
-            @else
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Contenido</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($mensajes as $mensaje)
-                            <tr>
-                                <td>{!! $mensaje->id !!}</td>
-                                <td>{!! $mensaje->titH1 !!}</td>
-                                <td>{!! $mensaje->title !!}</td>
-                                <td>
-                                    <a href="" class="btn btn-success btncolorblanco">
-                                      <i class="fa fa-edit"></i> Validar en blog 
-                                    </a>
-
-                                    
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-        </div>
-    </div>
+    
 @endsection
 
 @include('Edicion.main_banner')
