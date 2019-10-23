@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use Illuminate\Http\Request;
+use App\helper;
 
 class BannerController extends Controller
 {
@@ -12,6 +13,13 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     $Banner = Banner::all();
+    //     //return dd($Banner);       
+    //     return view('index',compact('Banner'));
+    // }
+
     public function index()
     {
         $Banner = Banner::all();
@@ -46,9 +54,14 @@ class BannerController extends Controller
      * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show(Banner $banner)
+    public function show(Request $request)
     {
-        //
+        $id=1;
+        $Banner= Banner::findOrFail($id);
+        //return view('home',compact('Banner'));
+        $Helper = helper::findOrFail($id);     
+        //return view('index',compact('Banner'));
+        return view('home')->with('Helper',$Helper)->with('Banner',$Banner);
     }
 
     /**
@@ -59,8 +72,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
+       $id = 1;
        $Banner = Banner::where('id',  '=', $id)->first();
-
        return view('admin.main_banner', compact('Banner'));
     }
 
@@ -73,19 +86,20 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Banner = Banner::findOrFail($id);
-        $data = $request->input('image');
-        $photo = $request->file('image')->getClientOriginalName();
-        $destination = base_path() . '/public/uploads';
-        $request->file('image')->move($destination, $photo);
-        return dd($request);
-        //$ruta = images::disk('public')
-        // $image->move('images', $image->getClientOriginalName());
-        // $Banner->imagen = $image->getClientOriginalName();
-        // $Banner->titH1= $request->titH1;
-        // $Banner->title= $request->title;
-        // $Banner-save();
         
+        $Banner = Banner::findOrFail($id);
+        $file = $request->file('imagen');
+ 
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+ 
+        $Banner->titH1 = $request->titulo;
+        $Banner->title = $request->contenido;
+        $Banner->imagen = $nombre;
+        $Banner->save();
+        return'Registro actualizado';
     }
 
     /**

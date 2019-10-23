@@ -11,47 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-	return view('index');
-});
+
 
 require __DIR__.'/adminlteExamples.php';
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home')->middleware('auth');
 
 //Route::resource('banner', 'MainbannerController');
 
-Route::get('/admin/main_banner', function() {
-     return view('admin.main_banner');
-})->name('home')->middleware('auth');
 
-Route::get('/admin/helper', function() {
-    return view('admin.helper');
-})->name('home')->middleware('auth');
 
-Route::get('/admin/quienes_somos', function() {
-    return view('admin.quienes_somos');
-})->name('home')->middleware('auth');
+Route::resource('/main_banner', 'BannerController');
+Route::resource('/helper', 'HelperController');
 
-Route::get('/admin/frase', function() {
-    return view('admin.frase');
-})->name('home')->middleware('auth');
+Route::get('/main_banner/{id}', 'BannerController@show')->name('home')->middleware('auth');
+Route::get('/main_banner/{id}/edit', 'BannerController@edit')->name('home')->middleware('auth');
 
-Route::get('/admin/programas', function() {
-    return view('admin.programas');
-})->name('home')->middleware('auth');
-
-Route::get('/admin/patrocinadores', function() {
-    return view('admin.patrocinadores');
-})->name('home')->middleware('auth');
-
-Route::get('/admin/aliados', function() {
-    return view('admin.aliados');
-})->name('home')->middleware('auth');
-
-Route::get('/','BannerController@index');
-
-Route::resource('/admin/main_banner', 'BannerController');
+Route::get('/','HelperController@index');
+Route::get('/helper/{id}', 'HelperController@show')->name('home')->middleware('auth');
+Route::get('/helper/{id}/edit', 'HelperController@edit')->name('home')->middleware('auth');

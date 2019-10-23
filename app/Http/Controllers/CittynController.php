@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Cittyn;
+Use App\Banner;
 use App\helper;
 use Illuminate\Http\Request;
 
-class HelperController extends Controller
+class CittynController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,10 @@ class HelperController extends Controller
      */
     public function index()
     {
-        $Helper = helper::all();      
-        return view('index',compact('Helper'));
+        $Banner = Banner::all();
+        $helepr = helper::all();      
+        //return view('index',compact('Banner'));
+        return view('home')->with('Banner',$Banner)->with('Helper',$Helper);
     }
 
     /**
@@ -42,37 +46,33 @@ class HelperController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\helper  $helper
+     * @param  \App\Cittyn  $cittyn
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Cittyn $cittyn)
     {
-        // $id=1;
-        // $Helper= helper::findOrFail($id);
-        // return view('home',compact('Helper'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\helper  $helper
+     * @param  \App\Cittyn  $cittyn
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Cittyn $cittyn)
     {
-        $id = 1;
-        $Helper = helper::where('id',  '=', $id)->first();
-        return view('admin.helper', compact('Helper'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\helper  $helper
+     * @param  \App\Cittyn  $cittyn
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, helper $helper)
+    public function update(Request $request, Cittyn $cittyn)
     {
         //
     }
@@ -80,10 +80,10 @@ class HelperController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\helper  $helper
+     * @param  \App\Cittyn  $cittyn
      * @return \Illuminate\Http\Response
      */
-    public function destroy(helper $helper)
+    public function destroy(Cittyn $cittyn)
     {
         //
     }

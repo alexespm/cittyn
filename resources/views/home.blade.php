@@ -13,18 +13,53 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>contenido en la web</h1>
-    <script src={{ asset('js/scripts.js') }}></script>
+    <h1>Contenido en la web</h1>
 @stop
 
 @section('content')
-    
+<!-- tabla mainbanner -->
+<div class="table-responsive">
+	<h2>main banner</h2>
+	<table class="table">
+	  	<thead>
+		  	<tr>
+		      	<th scope="col">#</th>
+		     	<th scope="col">Titulo</th>
+		      	<th scope="col">Contenido</th>
+		      	<th scope="col">Imagen</th>
+	    	</tr>
+	  	</thead>
+		<tbody>  	
+			<tr>
+				<th scope="row">{{ $Banner->id }}</th>
+				<td>{{ $Banner->titH1 }}</td>
+				<td>{{ $Banner->title }}</td>
+				<td><img src="images/{{$Banner->imagen}}" class="css-class" /></td>
+				<td>{{$Banner->imagen}}</td>
+		    </tr>
+		</tbody>
+	</table>
+</div>
+<!-- tabla Helper -->
+<div class="table-responsive">
+	<h2>Helper</h2>
+	<table class="table">
+	  	<thead>
+		  	<tr>
+		      	<th scope="col">#</th>
+		     	<th scope="col">Icono</th>
+		      	<th scope="col">Titulo</th>
+		      	<th scope="col">Contenido</th>
+	    	</tr>
+	  	</thead>
+		<tbody>  	
+			<tr>
+				<th scope="row">{{$Helper->id}}</th>
+				<th>{{$Helper->imagen}}</th>
+				<th>{{$Helper->titulo}}</th>
+				<th>{{$Helper->contenido}}</th>
+		    </tr>
+		</tbody>
+	</table>
+</div>
 @endsection
-
-@include('Edicion.main_banner')
-<a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1">
-    Nueva tarea
-</a>
- 
-
-
