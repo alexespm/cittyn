@@ -16,20 +16,17 @@
 require __DIR__.'/adminlteExamples.php';
 Auth::routes();
 
-// Route::get('/home', function() {
-//     return view('home');
-// })->name('home')->middleware('auth');
+Route::get('/home', function() {
+     return view('home');
+})->name('home')->middleware('auth');
 
 //Route::resource('banner', 'MainbannerController');
 
 
 
-Route::resource('/main_banner', 'BannerController');
-Route::resource('/helper', 'HelperController');
+Route::resource('Banner', 'BannerController');
+Route::resource('Helper', 'HelperController');
 
-Route::get('/main_banner/{id}', 'BannerController@show')->name('home')->middleware('auth');
-Route::get('/main_banner/{id}/edit', 'BannerController@edit')->name('home')->middleware('auth');
+Route::get('Banner','BannerController@index');
+Route::get('Helper','HelperController@index');
 
-Route::get('/','HelperController@index');
-Route::get('/helper/{id}', 'HelperController@show')->name('home')->middleware('auth');
-Route::get('/helper/{id}/edit', 'HelperController@edit')->name('home')->middleware('auth');

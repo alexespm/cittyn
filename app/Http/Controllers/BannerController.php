@@ -22,9 +22,9 @@ class BannerController extends Controller
 
     public function index()
     {
-        $Banner = Banner::all();
-        //return dd($Banner);       
-        return view('index',compact('Banner'));
+        $Banner = Banner::all();      
+        //return $Banner;
+        return view('VistaBanner',compact('Banner'));
     }
 
     /**
@@ -72,7 +72,6 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-       $id = 1;
        $Banner = Banner::where('id',  '=', $id)->first();
        return view('admin.main_banner', compact('Banner'));
     }

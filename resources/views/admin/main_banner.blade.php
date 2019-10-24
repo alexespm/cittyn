@@ -8,7 +8,7 @@
 
 @section('content')
 
-	<form method="POST" action="{{ route('main_banner.update', $Banner->id) }}" files="true" enctype="multipart/form-data"> 
+	<form method="POST" action="{{ route('Banner.update', $Banner->id) }}" files="true" enctype="multipart/form-data"> 
 	@method('PUT')	
 	@csrf
 		<div class="form-group">
@@ -17,7 +17,7 @@
 	  	</div>
 		<div class="form-group">
 		   	<label for="exampleFormControlTextarea1">Etiqueta "p" de nombre 'class="title"'</label>
-		    <textarea class="form-control" id="contenido" rows="3" name="contenido" value="{{$Banner->titH1}}"></textarea>
+		    <textarea class="form-control" id="contenido" rows="3" name="contenido">{{$Banner->title}}</textarea>
 		</div>
 		<div class="form-group">
 		    <label for="">Cambiar imagen</label>

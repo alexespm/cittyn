@@ -14,8 +14,9 @@ class HelperController extends Controller
      */
     public function index()
     {
-        $Helper = helper::all();      
-        return view('index',compact('Helper'));
+        $Helper = helper::all();
+        //return $Helper;      
+        return view('VistaHelper',compact('Helper'));
     }
 
     /**
@@ -58,11 +59,11 @@ class HelperController extends Controller
      * @param  \App\helper  $helper
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $id = 1;
-        $Helper = helper::where('id',  '=', $id)->first();
-        return view('admin.helper', compact('Helper'));
+        // $id = 1;
+        // $Helper = helper::where('id',  '=', $id)->first();
+        // return view('admin.helper', compact('Helper'));
     }
 
     /**

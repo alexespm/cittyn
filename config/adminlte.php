@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'main_banner/1',
+    'dashboard_url' => 'home',
 
     'logout_url' => 'logout',
 
@@ -138,12 +138,12 @@ return [
         ],
         [
             'text'        => 'main-banner',
-            'url'         => 'main_banner/1/edit',
+            'url'         => 'Banner',
             'icon'        => 'far fa-file',
         ],
         [
             'text'        => 'helper',
-            'url'         => 'helper/1/edit',
+            'url'         => 'Helper',
             'icon'        => 'far fa-file',
         ],
         [
