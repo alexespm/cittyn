@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHelpersTable extends Migration
+class CreateProgramasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateHelpersTable extends Migration
      */
     public function up()
     {
-        Schema::create('helpers', function (Blueprint $table) {
+        Schema::create('programas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('imagen');
-            $table->text('titulo');
+            $table->string('titulo');
             $table->text('contenido');
-            $table->text('fondo');
+            $table->string('fondo');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateHelpersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('helpers');
+        Schema::dropIfExists('programas');
     }
 }

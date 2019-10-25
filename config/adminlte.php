@@ -148,7 +148,22 @@ return [
         ],
         [
             'text'        => 'quienes-somos',
-            'url'         => 'admin/quienes-somos',
+            'url'         => 'Quienes-somos',
+            'icon'        => 'far fa-file',
+        ],
+        [
+            'text'        => 'frase',
+            'url'         => 'Frase',
+            'icon'        => 'far fa-file',
+        ],
+        [
+            'text'        => 'programas',
+            'url'         => 'Programas',
+            'icon'        => 'far fa-file',
+        ],
+        [
+            'text'        => 'patrocinadores',
+            'url'         => 'Patrocinadores',
             'icon'        => 'far fa-file',
         ],
         ['header' => 'account_settings'],

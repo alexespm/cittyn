@@ -11,6 +11,12 @@
 
 <div class="table-responsive">
 	<h3>Helper</h3>
+	@foreach($Helper as $Item)
+		<div>
+			<label>Background Container: </label> <input name="color" type="color" value="{{$Item->fondo}}" disabled />
+		</div>
+		@break
+	@endforeach
 	<table class="table" style="width:auto; height:20px;">
 	  	<thead>
 		  	<tr>
@@ -28,9 +34,10 @@
 				<th scope="row">{{ $ItemHelper->id }}</th>
 				
 				<td><img src="images/iconos/{{$ItemHelper->imagen}}" class="css-class" width="100" height="100" /></td>
-				<td>{{$ItemHelper->imagen}}</td>
+				<td>{{ $ItemHelper->imagen }}</td>
 				<td>{{ $ItemHelper->titulo }}</td>
 				<td>{{ $ItemHelper->contenido }}</td>
+
 				<td>
 			        <a href="{{route('Helper.edit',$ItemHelper->id)}}" class="btn btn-success btncolorblanco">
 			          <i class="fa fa-edit"></i> Actualizar web cittyn 
@@ -41,6 +48,7 @@
 			    </td>			        
 		    </tr>
 		    @endforeach  
+
 		</tbody>
 	</table>
 </div>

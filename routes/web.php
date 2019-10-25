@@ -26,7 +26,15 @@ Route::get('/home', function() {
 
 Route::resource('Banner', 'BannerController');
 Route::resource('Helper', 'HelperController');
+Route::resource('Quienes-somos', 'QuienesSomosController');
+Route::resource('Frase', 'FraseController');
+Route::resource('Programas', 'ProgramasController');
+Route::resource('Patrocinadores', 'PatrocinadoresController');
+
 
 Route::get('Banner','BannerController@index');
 Route::get('Helper','HelperController@index');
-
+Route::get('Quienes-somos','QuienesSomosController@index');
+Route::get('Frase','FraseController@index');
+Route::get('Programas','ProgramasController@index');
+Route::resource('Patrocinadores', 'PatrocinadoresController');

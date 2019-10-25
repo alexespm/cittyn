@@ -2,29 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Banner;
+use App\Programas;
 use Illuminate\Http\Request;
-use App\helper;
 
-class BannerController extends Controller
+class ProgramasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $Banner = Banner::all();
-    //     //return dd($Banner);       
-    //     return view('index',compact('Banner'));
-    // }
-
     public function index()
     {
-        $Banner = Banner::all();      
-        //return $Banner;
-        return view('VistaBanner',compact('Banner'));
+        $Programas = Programas::all();
+        //return $programas;      
+        return view('VistaProgramas',compact('Programas'));
     }
 
     /**
@@ -34,7 +26,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createprograms');
     }
 
     /**
@@ -45,47 +37,54 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Programas = new Programas;
+        $file = $request->file('imagen');
+ 
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+        $Programas->titulo = $request->titulo;
+        $Programas->contenido = $request->contenido;
+        $Programas->fondo = $nombre;
+        $Programas->save();
+        return'Registro Guardado';
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Programas  $programas
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Programas $programas)
     {
-        $id=1;
-        $Banner= Banner::findOrFail($id);
-        //return view('home',compact('Banner'));
-        $Helper = helper::findOrFail($id);     
-        //return view('index',compact('Banner'));
-        return view('home')->with('Helper',$Helper)->with('Banner',$Banner);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Programas  $programas
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-       $Banner = Banner::where('id',  '=', $id)->first();
-       return view('admin.main_banner', compact('Banner'));
+        $Programas= Programas::findOrFail($id);
+        return view('admin.programas',compact('Programas'));        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Banner  $banner
+     * @param  \App\Programas  $programas
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $Banner = Banner::findOrFail($id);
+        $Programas = Programas::findOrFail($id);
         $file = $request->file('imagen');
  
         //obtenemos el nombre del archivo
@@ -93,20 +92,20 @@ class BannerController extends Controller
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
  
-        $Banner->titH1 = $request->titulo;
-        $Banner->title = $request->contenido;
-        $Banner->imagen = $nombre;
-        $Banner->save();
+        $Programas->titulo = $request->titulo;
+        $Programas->contenido = $request->contenido;
+        $Programas->fondo = $nombre;
+        $Programas->save();
         return'Registro actualizado';
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Banner  $banner
+     * @param  \App\Programas  $programas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy(Programas $programas)
     {
         //
     }

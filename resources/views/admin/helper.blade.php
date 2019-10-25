@@ -8,23 +8,23 @@
 
 @section('content')
 
-	<form method="POST" action="{{ route('helper.update', $Helper->id) }}" files="true" enctype="multipart/form-data"> 
+	<form method="POST" action="{{ route('Helper.update', $Helper->id) }}" files="true" enctype="multipart/form-data"> 
 	@method('PUT')	
 	@csrf
 		<div>
-			<input name="color" type="color" value="#000000" />
+			<input name="color" type="color" value="{{$Helper->fondo}}" />
 		</div>
 		<div class="form-group">
 		    <label for="exampleFormControlInput1">Etiqueta "h4"</label>
-		    <input type="text" class="form-control" id="Titulo" name="titulo" placeholder="Ingrese nuevo titulo">
+		    <input type="text" class="form-control" id="Titulo" name="titulo" value="{{$Helper->titulo}}">
 	  	</div>
 		<div class="form-group">
 		   	<label for="exampleFormControlTextarea1">Etiqueta "p"</label>
-		    <textarea class="form-control" id="contenido" rows="3" name="contenido" ></textarea>
+		    <textarea class="form-control" id="contenido" rows="3" name="contenido" >{{$Helper->contenido}}</textarea>
 		</div>
 		<div class="form-group">
 		    <label for="">Cambiar Icono</label>
-		    <input type="file" id="imagen" name="imagen">
+		    <input type="file" id="imagen" name="imagen" required>
 		</div>
 	  	<button type="submit" class="btn btn-primary">Actualizar web cittyn</button>
 	</form> 
