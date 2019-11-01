@@ -19,6 +19,10 @@
 		    <label for="exampleFormControlInput1">Color Etiqueta "h1" </label>
 		    <input name="color" type="color" value="{{$Somos->color}}" />
 	  	</div>
+	  	<div class="form-group">
+		    <label for="exampleFormControlInput1">Color Letras de Etiqueta "h1" </label>
+		    <input name="colortext" type="color" value="{{$Somos->colortext}}" />
+	  	</div>
 		<div class="form-group">
 		   	<label for="exampleFormControlTextarea1">Etiqueta "p" del titulo</label>
 		    <textarea class="form-control" id="contenido" rows="3" name="acontenido">{{$Somos->acontenido}}</textarea>

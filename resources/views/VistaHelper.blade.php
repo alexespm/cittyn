@@ -11,12 +11,6 @@
 
 <div class="table-responsive">
 	<h3>Helper</h3>
-	@foreach($Helper as $Item)
-		<div>
-			<label>Background Container: </label> <input name="color" type="color" value="{{$Item->fondo}}" disabled />
-		</div>
-		@break
-	@endforeach
 	<table class="table" style="width:auto; height:20px;">
 	  	<thead>
 		  	<tr>

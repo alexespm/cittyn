@@ -166,6 +166,11 @@ return [
             'url'         => 'Patrocinadores',
             'icon'        => 'far fa-file',
         ],
+        [
+            'text'        => 'aliados',
+            'url'         => 'Aliados',
+            'icon'        => 'far fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

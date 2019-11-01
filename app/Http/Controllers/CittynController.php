@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Cittyn;
 Use App\Banner;
 use App\helper;
+use App\QuienesSomos;
+use App\Frase;
+use App\Programas;
+use App\patrocinador;
+use App\Aliados;
 use Illuminate\Http\Request;
 
 class CittynController extends Controller
@@ -17,9 +22,14 @@ class CittynController extends Controller
     public function index()
     {
         $Banner = Banner::all();
-        $helepr = helper::all();      
-        //return view('index',compact('Banner'));
-        return view('home')->with('Banner',$Banner)->with('Helper',$Helper);
+        $Helper = helper::all();  
+        $QuienesSomos = Quienessomos::all();   
+        $Frase = Frase::all(); 
+        $Programas = Programas::all(); 
+        $Patrocinadores = patrocinador::all();   
+        $Aliados = Aliados::all();   
+        //return view('index',compact('Banner,Helper'));
+        return view('index')->with('Banner',$Banner)->with('Helper',$Helper)->with('QuienesSomos',$QuienesSomos)->with('Frase',$Frase)->with('Programas',$Programas)->with('Patrocinadores',$Patrocinadores)->with('Aliados',$Aliados);
     }
 
     /**

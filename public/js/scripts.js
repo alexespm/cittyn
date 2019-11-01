@@ -6,3 +6,6 @@ $("#selectbox").on("change", function() {
 	    $selectedOption.modal('show');
 	  }
 	});
+
+
+$('.colorpicker').colorpicker();

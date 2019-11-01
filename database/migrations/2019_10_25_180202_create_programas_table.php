@@ -18,6 +18,7 @@ class CreateProgramasTable extends Migration
             $table->string('titulo');
             $table->text('contenido');
             $table->string('fondo');
+            $table->string('color');
             $table->timestamps();
         });
     }

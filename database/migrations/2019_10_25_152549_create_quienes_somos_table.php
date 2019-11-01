@@ -17,6 +17,7 @@ class CreateQuienesSomosTable extends Migration
             $table->bigIncrements('id');
             $table->text('acerca');
             $table->text('color');
+            $table->text('colortext');
             $table->text('acontenido');
             $table->text('mision');
             $table->text('mcontenido');

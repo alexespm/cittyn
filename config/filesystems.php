@@ -72,6 +72,10 @@ return [
             'driver' => 'local',
             'root' => public_path().'/images',
         ],
+        'patrocinadores' => [
+            'driver' => 'local',
+            'root' => public_path().'/images/patrocinadores',
+        ],
     ],
 
 ];

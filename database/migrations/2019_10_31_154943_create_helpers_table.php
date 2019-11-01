@@ -16,9 +16,8 @@ class CreateHelpersTable extends Migration
         Schema::create('helpers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('imagen');
-            $table->text('titulo');
+            $table->string('titulo');
             $table->text('contenido');
-            $table->text('fondo');
             $table->timestamps();
         });
     }
@@ -33,3 +32,5 @@ class CreateHelpersTable extends Migration
         Schema::dropIfExists('helpers');
     }
 }
+
+

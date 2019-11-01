@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -38,167 +38,96 @@
     <section class="helper">
         <div class="container">
             <div class="d-flex flex-row w-100" style="height: 200px;margin-top: -5rem; background-color:  rgb(255, 255, 255);">
-                <article class="d-flex flex-row col-4" style="border-right:1px solid rgba(95, 92, 92, 0.776); ">
-                    <div class="col-4 d-flex justify-content-center align-items-center">
-                        <img style= "height:100px; width:100px" src="images/iconos/lightbulb.svg">
-                    </div>
-                    <div class="d-flex flex-column col-8 justify-content-center">
-                        <h4 style="font-size: 27px; font-weight: bold"> Innovar </h4>
-                        <p style="margin: 0; "> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                    </div>
-                </article>
-                <article class="col-4 d-flex flex-row " style="border-right:1px solid rgba(95, 92, 92, 0.776); ">
-                    <div class="col-4 d-flex justify-content-center align-items-center" >
-                        <img style= "height:100px; width:100px" src="images/iconos/software (1).svg">
-                    </div>
-                    <div class="d-flex flex-column col-8 justify-content-center">
-                        <h4 style="font-size: 27px; font-weight: bold"> Tecnología </h4>
-                        <p style="margin: 0"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                    </div>
-                </article>
+                @foreach($Helper as $ItemHelper)
                 <article class="col-4 d-flex flex-row " >
                     <div class="col-4 d-flex justify-content-center align-items-center">
-                        <img style= "height: 100px; width: 100px" src="images/iconos/team1.svg">
+                        <img style= "height: 100px; width: 100px" src="images/iconos/{{$ItemHelper->imagen}}">
                     </div>
                     <div class="d-flex flex-column col-8 justify-content-center">
-                        <h4 style="font-size: 27px; font-weight: bold"> Alianzas </h4>
-                        <p style="margin: 0"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <h4 style="font-size: 27px; font-weight: bold"> {{$ItemHelper->titulo}} </h4>
+                        <p style="margin: 0"> {{$ItemHelper->contenido}} </p>
                     </div>
                 </article>
+                @endforeach
             </div>
         </div>
     </section>
     <section class="quienes-somos">
         <div class="d-flex flex-row justify-content-around mt-5 p-5">
+            @foreach($QuienesSomos as $ItemSomos)
             <div class="d-flex flex-column col-6">
-                <h1 style= "text-align:center; font-size: 3rem; margin-bottom: 2rem; background-color:#352961; color:white; font-weight: bold; border:#352961 3px solid">Acerca de Nosotros</h1>
-                <p style="text-align: center"> Aye, pestilence! The dagger tastes with madness, pull the fortress before it waves.  how stormy. you rob like a cannibal. small, rough skulls fiery burn a misty, lively tuna.  </p>
+                <h1 style= "text-align:center; font-size: 3rem; margin-bottom: 2rem; background-color:{{$ItemSomos->color}}; color:{{$ItemSomos->colortext}}; font-weight: bold; border:{{$ItemSomos->color}} 3px solid">{{$ItemSomos->acerca}}</h1>
+                <p style="text-align: center">{{$ItemSomos->acontenido}}  </p>
                 <br>
-                <h2>Misión</h2>
-                <p> Aye, pestilence! The dagger tastes with madness, pull the fortress before it waves.  how stormy. you rob like a cannibal. small, rough skulls fiery burn a misty, lively tuna.  </p>
-                <h2>Visión</h2>
-                <p> Aye, pestilence! The dagger tastes with madness, pull the fortress before it waves.  how stormy. you rob like a cannibal. small, rough skulls fiery burn a misty, lively tuna.  </p>
+                <h2>{{$ItemSomos->mision}}</h2>
+                <p>{{$ItemSomos->mcontenido}}</p>
+                <h2>{{$ItemSomos->vision}}</h2>
+                
+                <p>{{$ItemSomos->vcontenido}}</p>
             </div>
-            <div class="col-6 d-flex" style="background-image: url('images/bbussiness.jpg');background-position: center">
+
+            <div class="col-6 d-flex" style="background-image: url('images/{{$ItemSomos->background}}');background-position: center">
 
             </div>
+            @endforeach
         </div>
     </section>
     <section class="frase w-100">
-        <div class="parallax">
+        @foreach($Frase as $ItemFrase)
+        <div class="parallax" style="background-image: url('images/{{$ItemFrase->background}}');">
             <div class="d-flex justify-content-center align-items-center fondo-oscuro p-5">
-                <h3 style="color:rgba(255, 255, 255, 0.604);font-size: 30px; margin-bottom: 2rem;">Generar estrategias de emprendimiento para el desarrollo y el fomento de los negocios basados en
-                    tecnología de punta e innovación, una cultura de la calidad y una pertinencia de nuevas propuestas de
-                    programas formativos.</h3>
+                <h3 style="color:rgba(255, 255, 255, 0.604);font-size: 30px; margin-bottom: 2rem;">{{$ItemFrase->frase}}</h3>
             </div>
         </div>
+        @endforeach
     </section>
     <section class="programas w-100">
         <div class="container">
             <div class="d-flex flex-column align-items-center w-100 mb-3">
-                <h1 style= " text-align:center; font-size: 3rem; margin-bottom: 2rem; color: #352961; font-weight: bold;">Programas</h1>
+                <h1 style=" text-align:center; font-size: 3rem; margin-bottom: 2rem; color: #352961; font-weight: bold;">Programas</h1>
             </div>
             <div class="d-flex flex-row flex-wrap justify-content-center col-12">
+                @foreach($Programas as $Item)
                 <article class="d-flex p-3 col-4 carta-alta">
-                        <div class="d-flex w-100 bg emprendimiento-bg">
-                            <div class="d-flex flex-column justify-content-center align-items-center p-4 w-100" style="background-color: rgba(97, 68, 155, 0.25)">
-                                <h4 class="text-center mb-auto" style= "color:white; font-weight: bold"> Emprendimiento Tecnologico </h4>
-                                <p class="text-center mb-auto" style= "color:white; border: white 3px solid"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget magna at arcu tristique bibendum.</p>
+                        <div class="d-flex w-100 bg emprendimiento-bg" style="background-image: url('images/{{$Item->fondo}}')">
+                            <div class="d-flex flex-column justify-content-center align-items-center p-4 w-100" style="background-color: {{$Item->color}}">
+                                <h4 class="text-center mb-auto" style="color:white; font-weight: bold"> {{$Item->titulo}} </h4>
+                                <p class="text-center mb-auto" style="color:white; border: white 3px solid"> {{$Item->contenido}} </p>
                             </div>
                         </div>
                 </article>
-                <article class="d-flex p-3 col-4 carta-alta">
-                    <div class="d-flex w-100 bg propiedad-bg">
-                        <div class="d-flex flex-column justify-content-center align-items-center p-4 w-100 " style="background-color:rgba(255, 0, 0, 0.25)">
-                            <h4 class="text-center mb-auto" style= "color:white; font-weight: bold"> Propiedad Intelectual </h4>
-                            <p class="text-center mb-auto" style= "color:white; border: white 3px solid"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget magna at arcu tristique bibendum. </p>
-                        </div>
-                    </div>
-                </article>
-                <article class="d-flex p-3 col-4 carta-alta">
-                    <div class="d-flex w-100 bg disruptiva-bg">
-                        <div class="d-flex flex-column justify-content-center align-items-center p-4 w-100" style="background-color:rgba(255, 255, 0, 0.25)">
-                            <h4 class="text-center mb-auto" style= "color:white; font-weight: bold"> Formación Disruptiva </h4>
-                            <p class="text-center mb-auto" style= "color:white; border: white 3px solid" > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget magna at arcu tristique bibendum.</p>
-
-                        </div>
-                    </div>
-                </article>
-                <article class="d-flex p-3 col-4 carta-alta">
-                    <div class="d-flex w-100 bg excelencia-bg">
-                        <div class="d-flex flex-column justify-content-center align-items-center p-4 w-100"  style="background-color: rgba(0, 128, 0, 0.4)">
-                            <h4 class="text-center mb-auto" style= "color:white; font-weight: bold"> Excelencia formativa </h4>
-                                <p class="text-center mb-auto" style= "color:white; border: white 3px solid"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget magna at arcu tristique bibendum. </p>
-                        </div>
-                    </div>
-                </article>
-                <article class="d-flex p-3 col-4 carta-alta">
-                    <div class="d-flex w-100 bg investigacion-bg">
-                        <div class="d-flex flex-column justify-content-center align-items-center p-4 w-100"  style="background-color: rgba(54, 107, 223, 0.4)">
-                            <h4 class="text-center mb-auto" style= "color:white; font-weight: bold" > Aplicación de gestión de investigación </h4>
-                            <p class="text-center mb-auto" style= "color:white; border: white 3px solid"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget magna at arcu tristique bibendum. </p>
-
-                        </div>
-                    </div>
-                </article>
-
+                @endforeach      
             </div>
         </div>
+
     </section>
     <section class="patrocinadores w-100">
         <div class="w-100 p-5">
             <h2 class="text-center" style= " text-align:center; font-size: 3rem; margin-bottom: 2rem; color: #352961; font-weight: bold"> Ecosistema CUCEA </h2>
         </div>
+
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <ol class="carousel-indicators"> 
+                @foreach($Patrocinadores as $Item) 
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? ' active' : '' }}"></li>
+                @endforeach 
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                @foreach($Patrocinadores as $ItemPatrocinador)
+                <div class="carousel-item {{$loop->first ? ' active' : ''}}">
                     <article id="line" class="d-flex flex-row">
-                        <div class="d-flex flex-column col-7 des-ec-container" style="background-color: #1A3C57; height: 600px;" >
-                            <img class="logo-cucea-ecosistema" src="images/patrocinadores/CUCEA-FOOTER.png" >
+                        <div class="d-flex flex-column col-7 des-ec-container" style="background-color: {{ $ItemPatrocinador->color }}; height: 600px;" >
+                            <img class="logo-cucea-ecosistema" src="images/patrocinadores/{{$ItemPatrocinador->logo}}" > 
                             <div class="d-flex flex-column miembro-ec-container">
-                                <img class="logo-patrocinador" src="images/patrocinadores/Logo-Line.png">
-                                <p class="ml-5 mt-3" style="color: white"> Es un área común de colaboración, creada para fomentar la innovación y el empredimiento empresarial en la comunidad universitaria.</p>
+                                <img class="logo-patrocinador" style="max-width:290px; max-height:70px" src="images/patrocinadores/{{$ItemPatrocinador->logo_patrocinador}}">
+                                <p class="ml-5 mt-3" style="color: white"> {{$ItemPatrocinador->contenido_patrocinador}}</p>
                             </div>
                         </div>
-                        <div class="col-5" style="background-image: url('images/patrocinadores/fondo-line.png'); background-size: cover; background-position: center top"></div>
+                        <div class="col-5" style="background-image: url('images/patrocinadores/{{$ItemPatrocinador->background}}'); background-size: cover; background-position: center top"></div>
                     </article>
+                    
                 </div>
-                <div class="carousel-item">
-                    <article id="ciee" class="d-flex flex-row">
-                        <div class="d-flex flex-column col-7 des-ec-container" style="background-color: #F64F36; height: 600px" >
-                            <img class="logo-cucea-ecosistema" src="images/patrocinadores/CUCEA-FOOTER.png" >
-                            <div class="d-flex flex-column miembro-ec-container">
-                                <img class="ml-5" height="120px" width="120px" src="images/patrocinadores/ciee.jpg">
-                                <p class="ml-5 mt-3" style="color: white"> Somos un grupo multidisciplinario de investigadores y consultores de la Red Universidad de Guadalajara que tenemos como objetivo atender las necesidades de
-                                    empresarios y emprendedores, a quienes les ofrecemos servicios de consultoría, investigación, capacitación e incubación de empresas para que consigan altos estándares de calidad y tengan un
-                                    impacto económico positivo en el país de manera socialmente responsable.</p>
-                            </div>
-                        </div>
-                        <div class="col-5" style="background-image: url('images/patrocinadores/ciee_fondo.jpeg'); background-size: cover; background-position: center top">
-                        </div>
-                    </article>
-                </div>
-                <div class="carousel-item">
-                    <article id="iditpyme" class="d-flex flex-row">
-                        <div class="d-flex flex-column col-7 des-ec-container" style="background-color: #424242; height: 600px" >
-                            <img class="logo-cucea-ecosistema" src="images/patrocinadores/CUCEA-FOOTER.png" >
-                            <div class="d-flex flex-column miembro-ec-container">
-                                <img class="ml-5" height="120px" width="120px" src="images/patrocinadores/IDIT.preview.png">
-                                <p class="ml-5 mt-3" style="color: white"> Somos un grupo multidisciplinario de investigadores y consultores de la Red Universidad de Guadalajara que tenemos como objetivo atender las necesidades de
-                                    empresarios y emprendedores, a quienes les ofrecemos servicios de consultoría, investigación, capacitación e incubación de empresas para que consigan altos estándares de calidad y tengan un
-                                    impacto económico positivo en el país de manera socialmente responsable.</p>
-                            </div>
-                        </div>
-                        <div class="col-5" style="background-image: url('images/Coordinacion%20Mtria%20IS_0007-min.jpg'); background-size: cover; background-position: center top">
-
-                        </div>
-                    </article>
-                </div>
+                @endforeach
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -215,12 +144,13 @@
             <div class="w-100 p-3">
                 <h2 class="text-center"> Nuestros Aliados </h2>
             </div>
-            <div class="w-100 d-flex flex-row justify-content-around flex-wrap p-3">
-                <img src="images/patrocinadores/Dummy_flag.png">
-                <img src="images/patrocinadores/Dummy_flag.png">
-                <img src="images/patrocinadores/Dummy_flag.png">
-                <img src="images/patrocinadores/Dummy_flag.png">
+            
+            <div class="w-100 d-flex flex-row justify-content-around flex-wrap p-3"> 
+                @foreach($Aliados as $ItemAliados)
+                <img height="200" width="320" src="images/patrocinadores/{{$ItemAliados->imagen}}">
+                @endforeach
             </div>
+             
         </div>
     </section>
 </main>

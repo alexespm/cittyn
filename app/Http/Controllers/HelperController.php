@@ -26,7 +26,7 @@ class HelperController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -75,30 +75,21 @@ class HelperController extends Controller
     public function update(Request $request, $id)
     {
         $Helper = helper::findOrFail($id);
-     
-        $Helper1 = helper::findOrFail(1);
-        $Helper2 = helper::findOrFail(2);
-        $Helper3 = helper::findOrFail(3);
 
         $file = $request->file('imagen');
- 
+        
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('icon')->put($nombre,  \File::get($file));
- 
+
+        //$Helper->fondo = $request->color;
+
         $Helper->titulo = $request->titulo;
         $Helper->contenido = $request->contenido;
         $Helper->imagen = $nombre;
         
-        $Helper1 ->fondo = $request->color;
-        $Helper2->fondo = $request->color;
-        $Helper3->fondo = $request->color;
-        
         $Helper->save();
-        $Helper1->save();
-        $Helper2->save();
-        $Helper3->save();
         return'Registro actualizado';
     }
 

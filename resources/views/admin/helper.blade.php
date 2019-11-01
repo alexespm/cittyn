@@ -11,9 +11,6 @@
 	<form method="POST" action="{{ route('Helper.update', $Helper->id) }}" files="true" enctype="multipart/form-data"> 
 	@method('PUT')	
 	@csrf
-		<div>
-			<input name="color" type="color" value="{{$Helper->fondo}}" />
-		</div>
 		<div class="form-group">
 		    <label for="exampleFormControlInput1">Etiqueta "h4"</label>
 		    <input type="text" class="form-control" id="Titulo" name="titulo" value="{{$Helper->titulo}}">

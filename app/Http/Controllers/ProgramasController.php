@@ -48,8 +48,10 @@ class ProgramasController extends Controller
         $Programas->titulo = $request->titulo;
         $Programas->contenido = $request->contenido;
         $Programas->fondo = $nombre;
+        $Programas->color = $request->color;
         $Programas->save();
         return'Registro Guardado';
+        //return redirect()->route('Programas')->with('datos','Registro guardado correctamente');
     }
 
     /**
@@ -95,6 +97,7 @@ class ProgramasController extends Controller
         $Programas->titulo = $request->titulo;
         $Programas->contenido = $request->contenido;
         $Programas->fondo = $nombre;
+        $Programas->color = $request->color;
         $Programas->save();
         return'Registro actualizado';
     }

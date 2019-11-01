@@ -18,6 +18,7 @@
 		     	<th scope="col">Titulo</th>
 		      	<th scope="col">Contenido</th>
 		      	<th scope="col">Imagen</th>
+		      	<th scope="col"></th>
 		      	<th scope="col">Accion</th>
 	    	</tr>
 	  	</thead>

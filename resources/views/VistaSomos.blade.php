@@ -16,6 +16,7 @@
 		  	<tr>
 		      	<th scope="col">#</th>
 		      	<th scope="col">Color Titulo Container</th>
+		      	<th scope="col">Color texto</th>
 		      	<th scope="col">Background</th>
 		      	<th scope="col">Titulo</th>
 		      	<th scope="col">Contenido</th>
@@ -31,6 +32,7 @@
 			<tr>
 				<th scope="row">{{ $ItemSomos->id }}</th>
 				<td><input name="color" type="color" value="{{$ItemSomos->color}}" disabled /></td>
+				<td><input name="color" type="color" value="{{$ItemSomos->colortext}}" disabled /></td>
 				<td><img src="images/{{$ItemSomos->background}}" class="css-class" width="100" height="100" /></td>
 				<td>{{ $ItemSomos->acerca }}</td>
 				<td>{{$ItemSomos->acontenido}}</td>

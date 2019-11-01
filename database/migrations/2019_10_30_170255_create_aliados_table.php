@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePatrocinadoresTable extends Migration
+class CreateAliadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreatePatrocinadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('patrocinadores', function (Blueprint $table) {
+        Schema::create('aliados', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('imagen');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreatePatrocinadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patrocinadores');
+        Schema::dropIfExists('aliados');
     }
 }

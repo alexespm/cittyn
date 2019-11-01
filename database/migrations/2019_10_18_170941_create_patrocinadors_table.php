@@ -15,6 +15,11 @@ class CreatePatrocinadorsTable extends Migration
     {
         Schema::create('patrocinadors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('logo');
+            $table->string('logo_patrocinador');
+            $table->string('contenido_patrocinador');
+            $table->string('background');
+            $table->string('color');
             $table->timestamps();
         });
     }

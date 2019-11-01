@@ -20,6 +20,7 @@
 		      	<th scope="col">#</th>
 		      	<th scope="col">Titulo</th>
 		      	<th scope="col">Contenido</th>
+		      	<th scope="col">Color</th>
 		      	<th scope="col">Background</th>
 		      	<th scope="col"></th>	
 	    	</tr>
@@ -30,6 +31,7 @@
 				<th scope="row">{{ $ItemProgramas->id }}</th>
 				<td>{{ $ItemProgramas->titulo }}</td>
 				<td>{{ $ItemProgramas->contenido }}</td>
+				<td style="background-color:{{ $ItemProgramas->color }}"></td>
 				<td><img src="images/{{$ItemProgramas->fondo}}" class="css-class" width="100" height="100" /></td>
 				<td>{{$ItemProgramas->fondo}}</td>
 				<td>

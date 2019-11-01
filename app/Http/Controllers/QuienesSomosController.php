@@ -81,6 +81,7 @@ class QuienesSomosController extends Controller
  
         $Somos->acerca = $request->titulo;
         $Somos->color = $request->color;
+        $Somos->colortext = $request->colortext;
         $Somos->acontenido = $request->acontenido;
         $Somos->mision = $request->mision;
         $Somos->mcontenido = $request->mcontenido;
