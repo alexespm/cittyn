@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use Illuminate\Http\Request;
-use App\helper;
 
 class BannerController extends Controller
 {
@@ -56,12 +55,8 @@ class BannerController extends Controller
      */
     public function show(Request $request)
     {
-        $id=1;
         $Banner= Banner::findOrFail($id);
-        //return view('home',compact('Banner'));
-        $Helper = helper::findOrFail($id);     
-        //return view('index',compact('Banner'));
-        return view('home')->with('Helper',$Helper)->with('Banner',$Banner);
+        return view('home')->with('Banner',$Banner);
     }
 
     /**
@@ -87,17 +82,21 @@ class BannerController extends Controller
     {
         $Banner = Banner::findOrFail($id);
         $file = $request->file('imagen');
- 
+
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
+        
+
         //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
- 
+        \Storage::disk('images')->put($nombre,  \File::get($file));
         $Banner->titH1 = $request->titulo;
         $Banner->title = $request->contenido;
         $Banner->imagen = $nombre;
         $Banner->save();
-        return'Registro actualizado';
+        return redirect()->route('Banner.index')->with('datos','Registro Actualizado Correctamente');
+        //return redirect()->route('home');
+
+        //return'Registro actualizado';
     }
 
     /**

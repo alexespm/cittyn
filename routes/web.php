@@ -16,11 +16,11 @@
 require __DIR__.'/adminlteExamples.php';
 Auth::routes();
 
-Route::get('/home', function() {
+Route::get('/', function() {
      return view('home');
 })->name('home')->middleware('auth');
 
-//Route::resource('banner', 'MainbannerController');
+
 
 
 
@@ -33,7 +33,7 @@ Route::resource('Patrocinadores', 'PatrocinadorController');
 Route::resource('Aliados', 'AliadosController');
 
 
-Route::get('Banner','BannerController@index');
+Route::get('Banner', 'BannerController@index')->name('Banner.index')->middleware('auth');
 Route::get('Helper','HelperController@index');
 Route::get('Quienes-somos','QuienesSomosController@index');
 Route::get('Frase','FraseController@index');

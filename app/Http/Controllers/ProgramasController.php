@@ -39,9 +39,10 @@ class ProgramasController extends Controller
     {
         $Programas = new Programas;
         $file = $request->file('imagen');
- 
+        
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
+        return $nombre;
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
 
@@ -50,7 +51,8 @@ class ProgramasController extends Controller
         $Programas->fondo = $nombre;
         $Programas->color = $request->color;
         $Programas->save();
-        return'Registro Guardado';
+       
+        return back()->with('datos','Registro guardado correctamente');
         //return redirect()->route('Programas')->with('datos','Registro guardado correctamente');
     }
 
@@ -88,18 +90,28 @@ class ProgramasController extends Controller
     {
         $Programas = Programas::findOrFail($id);
         $file = $request->file('imagen');
- 
+       
+       if(empty($file)){
+            return $request->fondo;
+        }
+        else
+        { 
+            return $request->fondo;
+        }
+
+
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
- 
+
         $Programas->titulo = $request->titulo;
         $Programas->contenido = $request->contenido;
         $Programas->fondo = $nombre;
         $Programas->color = $request->color;
         $Programas->save();
         return'Registro actualizado';
+        return back();
     }
 
     /**
@@ -108,8 +120,11 @@ class ProgramasController extends Controller
      * @param  \App\Programas  $programas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Programas $programas)
+    public function destroy($id)
     {
-        //
+        $Programas = programas::findOrFail($id);
+        $Programas->delete();
+        return back();
     }
+    
 }
