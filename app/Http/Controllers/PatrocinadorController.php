@@ -99,24 +99,44 @@ class PatrocinadorController extends Controller
         $file1 = $request->file('imagen1');
         $file2 = $request->file('imagen2');
         $file3 = $request->file('imagen3');
-        //obtenemos el nombre del archivo
-        $nombre1 = $file1->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('patrocinadores')->put($nombre1,  \File::get($file1));
-
-        $nombre2 = $file2->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('patrocinadores')->put($nombre2,  \File::get($file2));
-
-        $nombre3 = $file3->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('patrocinadores')->put($nombre3,  \File::get($file3));
-       
-        $Patrocinador->logo = $nombre1;
+        if($file1 === NULL)
+        {
+            $file1 = $Patrocinador->logo;
+            $Patrocinador->logo = $file1;            
+        }
+        else{
+            //obtenemos el nombre del archivo
+            $nombre1 = $file1->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('patrocinadores')->put($nombre1,  \File::get($file1));
+            $Patrocinador->logo = $nombre1;
+        }
+        if($file2 === NULL)
+        {
+            $file2 = $Patrocinador->logo_patrocinador;
+            $Patrocinador->logo_patrocinador = $file2;
+        }
+        else{
+            //obtenemos el nombre del archivo
+            $nombre2 = $file2->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('patrocinadores')->put($nombre2,  \File::get($file2));
+            $Patrocinador->logo_patrocinador = $nombre2;
+        }
+        if($file3 === NULL)
+        {
+            $file3 = $Patrocinador->background;
+            $Patrocinador->background = $file3;
+        }
+        else{
+            //obtenemos el nombre del archivo
+            $nombre3 = $file3->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('patrocinadores')->put($nombre3,  \File::get($file3));            
+            $Patrocinador->background = $nombre3;
+        }
+        $Patrocinador->color = $request->color;
         $Patrocinador->contenido_patrocinador = $request->contenido;
-        $Patrocinador->logo_patrocinador = $nombre2;
-        $Patrocinador->background = $nombre3;
-        $Patrocinador->color = $request->colorpicker;
         $Patrocinador->save();
         return'Registro Actualizado';
     }

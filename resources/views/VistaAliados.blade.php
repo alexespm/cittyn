@@ -10,7 +10,7 @@
 <!-- tabla mainbanner -->
 
 <div class="table-responsive">
-	<h3>main banner</h3>
+	<h3>Aliados</h3>
 	<div class="row float-right">
 	    <a href="{{route('Aliados.create')}}" class="btn btn-info btncolorblanco"><i class="fas fa-user-plus"></i> Agregar un nuevo Aliado</a>
 	</div>

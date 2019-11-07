@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Programas;
 use Illuminate\Http\Request;
-
+use Validator;
 class ProgramasController extends Controller
 {
     /**
@@ -42,7 +42,6 @@ class ProgramasController extends Controller
         
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
-        return $nombre;
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
 
@@ -90,28 +89,28 @@ class ProgramasController extends Controller
     {
         $Programas = Programas::findOrFail($id);
         $file = $request->file('imagen');
-       
-       if(empty($file)){
-            return $request->fondo;
+        if($file === NULL)
+        {
+            // En caso de que el hecho de subir una imagen sea opcional, si el usuario no sube ninguna, usamos la imagen por defecto
+            $file =  $Programas->fondo;
+            $Programas->fondo  = $file;
         }
         else
-        { 
-            return $request->fondo;
+        {
+            // yo siempre encripto el nombre de la imagen, esto es opcional
+            //$name = md5($image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();;
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));
+            $Programas->fondo  = $nombre;
         }
-
-
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
-
         $Programas->titulo = $request->titulo;
         $Programas->contenido = $request->contenido;
-        $Programas->fondo = $nombre;
         $Programas->color = $request->color;
+      
         $Programas->save();
-        return'Registro actualizado';
-        return back();
+        return redirect()->route('Programas.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**

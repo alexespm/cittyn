@@ -157,21 +157,23 @@
 
 <footer class="footer w-100">
     <div class="d-flex flex-column align-items-center w-100">
+        @foreach($Footer as $ItemFooter)
         <p class="text-center">
-            CENTRO UNIVERSITARIO DE CIENCIAS ECONÓMICO ADMINISTRATIVAS<br>
-            Periférico Norte N° 799, Núcleo Universitario Los Belenes, C.P. 45100, Zapopan, Jalisco, México.<br>
-            Teléfono: +52 (33) 3770 3300<br>
+        {{$ItemFooter->CU}}<br>  
+        {{$ItemFooter->direccion}}<br>
+        Teléfono: {{$ItemFooter->telefono}}
         </p>
         <div class="col-12 text-center">
             <div style="display:flex;justify-content:center;justify-content: center;padding:1rem">
                 <div class=" mr-3 ml-3">
-                    <img style="height: 54px" src="https://care.cucea.udg.mx/static/img/iconos_CARE/iconos_CARE-06.png">
+                    <img style="height: 54px" src="{{$ItemFooter->imagen1}}">
                 </div>
                 <div class=" mr-3 ml-3">
-                    <img src="http://ayuda.cucea.udg.mx/assets/imgs/dwlogo.png">
+                    <img src="{{$ItemFooter->imagen2}}">
                 </div>
             </div>
         </div>
+         @endforeach
     </div>
 </footer>
 <!-- Optional JavaScript -->

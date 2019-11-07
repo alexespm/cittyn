@@ -31,13 +31,14 @@ Route::resource('Frase', 'FraseController');
 Route::resource('Programas', 'ProgramasController');
 Route::resource('Patrocinadores', 'PatrocinadorController');
 Route::resource('Aliados', 'AliadosController');
-
+Route::resource('Footer', 'FooterController');
 
 Route::get('Banner', 'BannerController@index')->name('Banner.index')->middleware('auth');
-Route::get('Helper','HelperController@index');
-Route::get('Quienes-somos','QuienesSomosController@index');
-Route::get('Frase','FraseController@index');
-Route::get('Programas','ProgramasController@index');
-Route::get('Patrocinadores', 'PatrocinadorController@index');
-Route::get('Aliados', 'AliadosController@index');
+Route::get('Helper','HelperController@index')->name('Helper.index')->middleware('auth');
+Route::get('Quienes-somos','QuienesSomosController@index')->name('Quienes-somos.index')->middleware('auth');
+Route::get('Frase','FraseController@index')->name('Frase.index')->middleware('auth');
+Route::get('Programas','ProgramasController@index')->name('Programas.index')->middleware('auth');
+Route::get('Patrocinadores', 'PatrocinadorController@index')->name('Patrocinador.index')->middleware('auth');
+Route::get('Aliados', 'AliadosController@index')->name('Aliados.index')->middleware('auth');
+Route::get('Footer', 'FooterController@index')->name('Footer.index')->middleware('auth');
 Route::get('Cittyn', 'CittynController@index');

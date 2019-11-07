@@ -73,17 +73,24 @@ class FraseController extends Controller
     {
         $Frase = Frase::findOrFail($id);
         $file = $request->file('imagen');
- 
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
- 
+        if($file === NULL)
+        {
+            // En caso de que el hecho de subir una imagen sea opcional, si el usuario no sube ninguna, usamos la imagen por defecto
+            $file =  $Frase->background;
+            $Frase->background  = $file;
+        }
+        else
+        {
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));
+            $Frase->background = $nombre;
+        }
        
-        $Frase->background = $nombre;
         $Frase->frase = $request->contenido;
         $Frase->save();
-        return'Registro actualizado';
+        return redirect()->route('Frase.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**

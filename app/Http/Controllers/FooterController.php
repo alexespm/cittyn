@@ -2,18 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Cittyn;
-Use App\Banner;
-use App\helper;
-use App\QuienesSomos;
-use App\Frase;
-use App\Programas;
-use App\patrocinador;
-use App\Aliados;
 use App\footer;
 use Illuminate\Http\Request;
 
-class CittynController extends Controller
+class FooterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,16 +14,8 @@ class CittynController extends Controller
      */
     public function index()
     {
-        $Banner = Banner::all();
-        $Helper = helper::all();  
-        $QuienesSomos = Quienessomos::all();   
-        $Frase = Frase::all(); 
-        $Programas = Programas::all(); 
-        $Patrocinadores = patrocinador::all();   
-        $Aliados = Aliados::all(); 
-        $Footer = footer::all();  
-        //return view('index',compact('Banner,Helper'));
-        return view('index')->with('Banner',$Banner)->with('Helper',$Helper)->with('QuienesSomos',$QuienesSomos)->with('Frase',$Frase)->with('Programas',$Programas)->with('Patrocinadores',$Patrocinadores)->with('Aliados',$Aliados)->with('Footer',$Footer);
+        $Footer= footer::all();  
+        return view('VistaFooter',compact('Footer'));
     }
 
     /**
@@ -58,10 +42,10 @@ class CittynController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cittyn  $cittyn
+     * @param  \App\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function show(Cittyn $cittyn)
+    public function show(footer $footer)
     {
         //
     }
@@ -69,33 +53,41 @@ class CittynController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cittyn  $cittyn
+     * @param  \App\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cittyn $cittyn)
+    public function edit($id)
     {
-        //
+        $Footer = footer::where('id',  '=', $id)->first();
+        return view('admin.footer', compact('Footer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cittyn  $cittyn
+     * @param  \App\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cittyn $cittyn)
+    public function update(Request $request, $id)
     {
-        //
+        $Footer = footer::findOrFail($id);
+        $Footer->CU = $request->cu;
+        $Footer->direccion = $request->direccion;
+        $Footer->telefono = $request->telefono;
+        $Footer->imagen1 = $request->imagen1;
+        $Footer->imagen2 = $request->imagen2;
+        $Footer->save();
+        return redirect()->route('Footer.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cittyn  $cittyn
+     * @param  \App\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cittyn $cittyn)
+    public function destroy(footer $footer)
     {
         //
     }

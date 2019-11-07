@@ -44,7 +44,12 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Banner = new Banner;
+        $Banner->titH1 = "Titulo Banner";
+        $Banner->title = "Contenido Banner";
+        $Banner->imagen = "edit.jpg";
+        $Banner->save();
+        return redirect()->route('Banner.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**
@@ -82,16 +87,23 @@ class BannerController extends Controller
     {
         $Banner = Banner::findOrFail($id);
         $file = $request->file('imagen');
-
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
+        $validator = Validator::make ($request->all(), [ 'imagen' => 'max:5120']);  
+        if($file === NULL)
+        {
+            $file =  $Banner->imagen;
+            $Banner->imagen  = $file;
+        }
+        else{
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('images')->put($nombre,  \File::get($file));
+            $Banner->imagen = $nombre;
+        }
         
-
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('images')->put($nombre,  \File::get($file));
         $Banner->titH1 = $request->titulo;
         $Banner->title = $request->contenido;
-        $Banner->imagen = $nombre;
+        
         $Banner->save();
         return redirect()->route('Banner.index')->with('datos','Registro Actualizado Correctamente');
         //return redirect()->route('home');
@@ -103,10 +115,12 @@ class BannerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Banner  $banner
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Respon se
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
-        //
+        $Banner = Banner::findOrFail($id);
+        $Banner->delete();
+        return redirect()->route('Banner.index')->with('datos','Registro Borrado Correctamente');
     }
 }

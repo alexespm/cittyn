@@ -19,6 +19,7 @@
     </button>
   </div>
   @endif
+
 	<table class="table" style="width:auto; height:20px;">
 	  	<thead>
 		  	<tr>
@@ -41,10 +42,7 @@
 				<td>
 			        <a href="{{route('Banner.edit',$ItemBanner->id)}}" class="btn btn-success btncolorblanco">
 			          <i class="fa fa-edit"></i> Actualizar web cittyn 
-			        </a>
-			        <!-- <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1">
-    					Actualiza Contenido
-					</a> -->			   
+			        </a>			   
 			    </td>			        
 		    </tr>
 		    @endforeach  

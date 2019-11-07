@@ -34,6 +34,7 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen" id="imagen" style="width: 0px;height: 0px;overflow: hidden;">
+						
 					</label>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
@@ -63,10 +64,10 @@
 	$(function() {
 	    $(document).on("change",".uploadFile", function()
 	    {
-	    		var uploadFile = $(this);
+	    	var uploadFile = $(this);
 	        var files = !!this.files ? this.files : [];
 	        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-	 
+	 		
 	        if (/^image/.test( files[0].type)){ // only image file
 	            var reader = new FileReader(); // instance of the FileReader
 	            reader.readAsDataURL(files[0]); // read the local file

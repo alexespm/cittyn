@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
 
     'logout_url' => 'logout',
 
@@ -169,6 +169,11 @@ return [
         [
             'text'        => 'aliados',
             'url'         => 'Aliados',
+            'icon'        => 'far fa-file',
+        ],
+        [
+            'text'        => 'footer',
+            'url'         => 'Footer',
             'icon'        => 'far fa-file',
         ],
         ['header' => 'account_settings'],

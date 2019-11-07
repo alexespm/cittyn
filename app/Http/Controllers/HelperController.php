@@ -75,22 +75,27 @@ class HelperController extends Controller
     public function update(Request $request, $id)
     {
         $Helper = helper::findOrFail($id);
-
         $file = $request->file('imagen');
-        
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('icon')->put($nombre,  \File::get($file));
-
-        //$Helper->fondo = $request->color;
+        if($file === NULL)
+        {
+            // En caso de que el hecho de subir una imagen sea opcional, si el usuario no sube ninguna, usamos la imagen por defecto
+            $file =  $Helper->imagen;
+            $Helper->imagen  = $file;
+        }
+        else
+        {
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('icon')->put($nombre,  \File::get($file));
+             $Helper->imagen  = $nombre;
+        }
 
         $Helper->titulo = $request->titulo;
         $Helper->contenido = $request->contenido;
-        $Helper->imagen = $nombre;
         
         $Helper->save();
-        return'Registro actualizado';
+        return redirect()->route('Helper.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**

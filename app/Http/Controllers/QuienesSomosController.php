@@ -73,11 +73,21 @@ class QuienesSomosController extends Controller
     {
         $Somos = QuienesSomos::findOrFail($id);
         $file = $request->file('imagen');
- 
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
+        if($file === NULL)
+        {
+            // En caso de que el hecho de subir una imagen sea opcional, si el usuario no sube ninguna, usamos la imagen por defecto
+            $file =  $Somos->background;
+            $Somos->background  = $file;
+        }
+        else
+        {
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));
+            $Programas->background = $nombre;
+        }
+        
  
         $Somos->acerca = $request->titulo;
         $Somos->color = $request->color;
@@ -87,9 +97,8 @@ class QuienesSomosController extends Controller
         $Somos->mcontenido = $request->mcontenido;
         $Somos->vision = $request->vision;
         $Somos->vcontenido = $request->vcontenido;
-        $Somos->background = $nombre;
         $Somos->save();
-        return'Registro actualizado';
+        return redirect()->route('Quienes-somos.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**
