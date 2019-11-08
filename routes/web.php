@@ -21,9 +21,6 @@ Route::get('/', function() {
 })->name('home')->middleware('auth');
 
 
-
-
-
 Route::resource('Banner', 'BannerController');
 Route::resource('Helper', 'HelperController');
 Route::resource('Quienes-somos', 'QuienesSomosController');
@@ -41,4 +38,4 @@ Route::get('Programas','ProgramasController@index')->name('Programas.index')->mi
 Route::get('Patrocinadores', 'PatrocinadorController@index')->name('Patrocinador.index')->middleware('auth');
 Route::get('Aliados', 'AliadosController@index')->name('Aliados.index')->middleware('auth');
 Route::get('Footer', 'FooterController@index')->name('Footer.index')->middleware('auth');
-Route::get('Cittyn', 'CittynController@index');
+Route::get('Cittyn', 'CittynController@index')->name('Cittyn.index');

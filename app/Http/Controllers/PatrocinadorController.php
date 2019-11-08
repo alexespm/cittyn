@@ -60,7 +60,7 @@ class PatrocinadorController extends Controller
         $Patrocinador->background = $nombre3;
         $Patrocinador->color = $request->color;
         $Patrocinador->save();
-        return'Registro Guardado';
+         return redirect()->route('Patrocinador.index')->with('datos','Registro Guardado Correctamente');
     }
 
     /**
@@ -138,7 +138,7 @@ class PatrocinadorController extends Controller
         $Patrocinador->color = $request->color;
         $Patrocinador->contenido_patrocinador = $request->contenido;
         $Patrocinador->save();
-        return'Registro Actualizado';
+        return redirect()->route('Patrocinador.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**
@@ -147,8 +147,10 @@ class PatrocinadorController extends Controller
      * @param  \App\patrocinador  $patrocinador
      * @return \Illuminate\Http\Response
      */
-    public function destroy(patrocinador $patrocinador)
+    public function destroy($id)
     {
-        //
+        $Patrocinador = patrocinador::findOrFail($id);
+        $Patrocinador->delete();
+        return redirect()->route('Patrocinador.index')->with('datos','Registro Eliminado Correctamente');
     }
 }

@@ -49,32 +49,6 @@
 </div>
 
 <!-- Modal -->
-<div class="modal modal-danger fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center" id="myModalLabel">Eliminar Programa</h4>
-      </div>
-      <form id="deleteForm" action="{{route('Programas.destroy',$ItemProgramas->id)}}" method="post">
-      		@method('DELETE')
-      		{{csrf_field()}}
-	      <div class="modal-body">
-				<p class="text-center">
-					¿Estás seguro que quieres eliminar el Programa {{ $ItemProgramas->titulo }}?
-				</p>
-	      		<input type="text" name="category_id" id="cat_id" value="{{$ItemProgramas->id}}">
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancelar</button>
-	        <button type="submit" class="btn btn-warning">Si, Eliminar</button>
-	      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Otro modal -->
 <div id="DeleteModal" class="modal fade text-danger" role="dialog">
    <div class="modal-dialog ">
      <!-- Modal content-->

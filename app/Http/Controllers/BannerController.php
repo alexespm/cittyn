@@ -119,8 +119,5 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        $Banner = Banner::findOrFail($id);
-        $Banner->delete();
-        return redirect()->route('Banner.index')->with('datos','Registro Borrado Correctamente');
     }
 }

@@ -51,8 +51,7 @@ class ProgramasController extends Controller
         $Programas->color = $request->color;
         $Programas->save();
        
-        return back()->with('datos','Registro guardado correctamente');
-        //return redirect()->route('Programas')->with('datos','Registro guardado correctamente');
+        return redirect()->route('Programas.index')->with('datos','Registro guardado correctamente');
     }
 
     /**
@@ -123,7 +122,7 @@ class ProgramasController extends Controller
     {
         $Programas = programas::findOrFail($id);
         $Programas->delete();
-        return back();
+        return redirect()->route('Programas.index')->with('datos','Registro Eliminado Correctamente');
     }
     
 }

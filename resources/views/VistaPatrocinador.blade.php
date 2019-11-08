@@ -43,13 +43,56 @@
 			        <a href="{{route('Patrocinadores.edit',$ItemPatrocinador->id)}}" class="btn btn-success btncolorblanco">
 			          <i class="fa fa-edit"></i> Actualizar web cittyn 
 			        </a>
-			        <!-- <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1">
-    					Actualiza Contenido
-					</a> -->			   
+			        <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$ItemPatrocinador->id}})" data-target="#DeleteModal" class="btn btn-danger btncolorblanco">
+			        	<i class="fa fa-trash"></i> Eliminar Programa
+			        </a>			   
 			    </td>			        
 		    </tr>
 		    @endforeach  
 		</tbody>
 	</table>
 </div>
+
+<!-- Modal -->
+<div id="DeleteModal" class="modal fade text-danger" role="dialog">
+   <div class="modal-dialog ">
+     <!-- Modal content-->
+     <form action="" id="deleteForm" method="post">
+         <div class="modal-content">
+             <div class="modal-header bg-danger">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title text-center">Eliminar Patrocinador</h4>
+             </div>
+             <div class="modal-body">
+                 {{ csrf_field() }}
+                 {{ method_field('DELETE') }}
+                 <p class="text-center">¿Estás seguro que quieres eliminar al Patrocinador?</p>
+             </div>
+             <div class="modal-footer">
+                 <center>
+                     <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                     <button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Si, Eliminar</button>
+                 </center>
+             </div>
+         </div>
+     </form>
+   </div>
+  </div>
+@endsection
+
+@section('javascript')
+	<script type="text/javascript">
+		function deleteData(id)
+	    {
+	        var id = id;
+	        var url = '{{ route("Patrocinadores.destroy", ":id") }}';
+	        url = url.replace(':id', id);
+	        $("#deleteForm").attr('action', url);
+	    }
+
+	    function formSubmit()
+	    {
+	        $("#deleteForm").submit();
+	    }
+	</script>
 @endsection

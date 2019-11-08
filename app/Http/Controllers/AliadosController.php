@@ -44,7 +44,7 @@ class AliadosController extends Controller
         \Storage::disk('patrocinadores')->put($nombre,  \File::get($file));
         $Aliados->imagen = $nombre;
         $Aliados->save();
-        return'Registro Guardado';
+        return redirect()->route('Aliados.index')->with('datos','Registro Guardado Correctamente');
     }
 
     /**
@@ -87,7 +87,7 @@ class AliadosController extends Controller
         $Aliados->imagen = $nombre;
 
         $Aliados->save();
-        return'Registro Actualizado';
+        return redirect()->route('Aliados.index')->with('datos','Registro Actualizado Correctamente');
     }
 
     /**
@@ -96,8 +96,10 @@ class AliadosController extends Controller
      * @param  \App\Aliados  $aliados
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aliados $aliados)
+    public function destroy($id)
     {
-        //
+        $Aliados = Aliados::findOrFail($id);
+        $Aliados->delete();
+        return redirect()->route('Aliados.index')->with('datos','Registro Eliminado Correctamente');
     }
 }
