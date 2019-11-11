@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-
 	<form method="POST" action="{{ route('Frase.update', $Frase->id) }}" files="true" enctype="multipart/form-data"> 
 	@method('PUT')	
 	@csrf
@@ -23,8 +22,8 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen" id="imagen" style="width: 0px;height: 0px;overflow: hidden;">
-						
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->

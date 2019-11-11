@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\footer;
 use Illuminate\Http\Request;
+use Validator,Redirect;
 
 class FooterController extends Controller
 {
@@ -78,7 +79,7 @@ class FooterController extends Controller
         $Footer->imagen1 = $request->imagen1;
         $Footer->imagen2 = $request->imagen2;
         $Footer->save();
-        return redirect()->route('Footer.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Footer')->withSuccess('Perfecto! Registro Actualizado Correctamente.'); 
     }
 
     /**

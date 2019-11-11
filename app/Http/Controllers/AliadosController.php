@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Aliados;
 use Illuminate\Http\Request;
-
+use Validator,Redirect;
 class AliadosController extends Controller
 {
     /**
@@ -39,6 +39,9 @@ class AliadosController extends Controller
     {
         $Aliados = new Aliados;
         $file = $request->file('imagen');
+        request()->validate([
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         $nombre = $file->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('patrocinadores')->put($nombre,  \File::get($file));
@@ -81,13 +84,23 @@ class AliadosController extends Controller
     {
         $Aliados = Aliados::findOrFail($id);
         $file = $request->file('imagen');
-        $nombre = $file->getClientOriginalName();
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('patrocinadores')->put($nombre,  \File::get($file));
-        $Aliados->imagen = $nombre;
-
+        if($file === NULL)
+        {
+            $file = $Aliados->imagen; 
+            $Aliados->imagen = $file;   
+        }
+        else
+        {
+            request()->validate([
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $nombre = $file->getClientOriginalName(); 
+            \Storage::disk('patrocinadores')->put($nombre,  \File::get($file));
+            $Aliados->imagen = $nombre;
+        }
+           
         $Aliados->save();
-        return redirect()->route('Aliados.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Aliados')->withSuccess('Perfecto! Registro Actualizado Correctamente.');       
     }
 
     /**

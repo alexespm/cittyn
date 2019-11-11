@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\patrocinador;
 use Illuminate\Http\Request;
-
+use Validator,Redirect;
 class PatrocinadorController extends Controller
 {
     /**
@@ -40,6 +40,11 @@ class PatrocinadorController extends Controller
         $file1 = $request->file('imagen1');
         $file2 = $request->file('imagen2');
         $file3 = $request->file('imagen3');
+        request()->validate([
+            'imagen1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagen2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagen3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         //obtenemos el nombre del archivo
         $nombre1 = $file1->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -105,6 +110,9 @@ class PatrocinadorController extends Controller
             $Patrocinador->logo = $file1;            
         }
         else{
+            request()->validate([
+                'imagen1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre1 = $file1->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -117,6 +125,9 @@ class PatrocinadorController extends Controller
             $Patrocinador->logo_patrocinador = $file2;
         }
         else{
+            request()->validate([
+                'imagen2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre2 = $file2->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -129,6 +140,9 @@ class PatrocinadorController extends Controller
             $Patrocinador->background = $file3;
         }
         else{
+            request()->validate([
+                'imagen3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre3 = $file3->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -138,7 +152,7 @@ class PatrocinadorController extends Controller
         $Patrocinador->color = $request->color;
         $Patrocinador->contenido_patrocinador = $request->contenido;
         $Patrocinador->save();
-        return redirect()->route('Patrocinador.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Patrocinadores')->withSuccess('Perfecto! Registro Actualizado Correctamente.');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\helper;
 use Illuminate\Http\Request;
-
+use Validator,Redirect;
 class HelperController extends Controller
 {
     /**
@@ -75,6 +75,7 @@ class HelperController extends Controller
     public function update(Request $request, $id)
     {
         $Helper = helper::findOrFail($id);
+        
         $file = $request->file('imagen');
         if($file === NULL)
         {
@@ -84,6 +85,9 @@ class HelperController extends Controller
         }
         else
         {
+            request()->validate([
+                'imagen' => 'required|image|mimes:png,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -95,7 +99,8 @@ class HelperController extends Controller
         $Helper->contenido = $request->contenido;
         
         $Helper->save();
-        return redirect()->route('Helper.index')->with('datos','Registro Actualizado Correctamente');
+        //return redirect()->route('Helper.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Helper')->withSuccess('Perfecto! Registro Actualizado Correctamente.');
     }
 
     /**

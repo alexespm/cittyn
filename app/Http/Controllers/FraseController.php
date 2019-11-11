@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Frase;
 use Illuminate\Http\Request;
-
+use Validator,Redirect;
 class FraseController extends Controller
 {
     /**
@@ -81,6 +81,9 @@ class FraseController extends Controller
         }
         else
         {
+            request()->validate([
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -90,7 +93,8 @@ class FraseController extends Controller
        
         $Frase->frase = $request->contenido;
         $Frase->save();
-        return redirect()->route('Frase.index')->with('datos','Registro Actualizado Correctamente');
+        // return redirect()->route('Frase.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Frase')->withSuccess('Perfecto! Registro Actualizado Correctamente.');
     }
 
     /**

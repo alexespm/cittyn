@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Programas;
 use Illuminate\Http\Request;
-use Validator;
+use Validator,Redirect;
 class ProgramasController extends Controller
 {
     /**
@@ -38,6 +38,9 @@ class ProgramasController extends Controller
     public function store(Request $request)
     {
         $Programas = new Programas;
+        request()->validate([
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
+        ]);
         $file = $request->file('imagen');
         
         //obtenemos el nombre del archivo
@@ -50,8 +53,8 @@ class ProgramasController extends Controller
         $Programas->fondo = $nombre;
         $Programas->color = $request->color;
         $Programas->save();
+        return Redirect::to('Programas')->withSuccess('Perfecto! Programa creado exitosamente.');
        
-        return redirect()->route('Programas.index')->with('datos','Registro guardado correctamente');
     }
 
     /**
@@ -96,6 +99,9 @@ class ProgramasController extends Controller
         }
         else
         {
+            request()->validate([
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             // yo siempre encripto el nombre de la imagen, esto es opcional
             //$name = md5($image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();;
             //obtenemos el nombre del archivo
@@ -109,7 +115,8 @@ class ProgramasController extends Controller
         $Programas->color = $request->color;
       
         $Programas->save();
-        return redirect()->route('Programas.index')->with('datos','Registro Actualizado Correctamente');
+        //return redirect()->route('Programas.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Programas')->withSuccess('Perfecto! Registro Actualizado Correctamente.');
     }
 
     /**

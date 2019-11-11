@@ -7,8 +7,14 @@
 @stop
 
 @section('content')
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+    <br>
+@endif
 <!-- tabla Programas -->
-
 <div class="table-responsive">
 	<h3>Patrocinadores</h3>
 	<div class="row float-right">

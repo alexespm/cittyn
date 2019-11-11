@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-
 	<form method="POST" action="{{ route('Banner.update', $Banner->id) }}" files="true" enctype="multipart/form-data"> 
 	@method('PUT')	
 	@csrf
@@ -26,9 +25,9 @@
 			    	<div class="imagePreview" style="background-image: url('/images/{{$Banner->imagen}}');"></div>
 			    	
 					<label class="btn btn-primary">
-						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen" id="imagen" style="width: 0px;height: 0px;overflow: hidden;">
-						
+						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen" id="imagen" accept="image/*" style="width: 0px;height: 0px;overflow: hidden;">
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->

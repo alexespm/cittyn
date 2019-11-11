@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\QuienesSomos;
 use Illuminate\Http\Request;
-
+use Validator,Redirect;
 class QuienesSomosController extends Controller
 {
     /**
@@ -81,11 +81,14 @@ class QuienesSomosController extends Controller
         }
         else
         {
+            request()->validate([
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
             \Storage::disk('local')->put($nombre,  \File::get($file));
-            $Programas->background = $nombre;
+            $Somos->background = $nombre;
         }
         
  
@@ -98,7 +101,8 @@ class QuienesSomosController extends Controller
         $Somos->vision = $request->vision;
         $Somos->vcontenido = $request->vcontenido;
         $Somos->save();
-        return redirect()->route('Quienes-somos.index')->with('datos','Registro Actualizado Correctamente');
+        //return redirect()->route('Quienes-somos.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Quienes-somos')->withSuccess('Perfecto! Registro Actualizado Correctamente.');
     }
 
     /**

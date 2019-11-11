@@ -8,6 +8,8 @@
 @stop 
 
 @section('content')
-	<button type="button" class="btn btn-primary btn-block" onclick="window.location='{{ URL::route('Cittyn.index')}}'">Web Cittyn</button>
+	<a href="{{route('Cittyn.index')}}" target="_blank" class="btn btn-primary btn-block">
+			          <i class="fas fa-chevron-circle-right" ></i> Web Cittyn 
+	</a>	
 @endsection
 

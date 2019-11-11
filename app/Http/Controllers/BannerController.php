@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use Illuminate\Http\Request;
-
+USE Validator,Redirect;
 class BannerController extends Controller
 {
     /**
@@ -44,12 +44,7 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $Banner = new Banner;
-        $Banner->titH1 = "Titulo Banner";
-        $Banner->title = "Contenido Banner";
-        $Banner->imagen = "edit.jpg";
-        $Banner->save();
-        return redirect()->route('Banner.index')->with('datos','Registro Actualizado Correctamente');
+
     }
 
     /**
@@ -86,6 +81,7 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $Banner = Banner::findOrFail($id);
+        
         $file = $request->file('imagen');
         $validator = Validator::make ($request->all(), [ 'imagen' => 'max:5120']);  
         if($file === NULL)
@@ -94,6 +90,9 @@ class BannerController extends Controller
             $Banner->imagen  = $file;
         }
         else{
+            request()->validate([
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
@@ -105,8 +104,8 @@ class BannerController extends Controller
         $Banner->title = $request->contenido;
         
         $Banner->save();
-        return redirect()->route('Banner.index')->with('datos','Registro Actualizado Correctamente');
-        //return redirect()->route('home');
+        //return redirect()->route('Banner.index')->with('datos','Registro Actualizado Correctamente');
+        return Redirect::to('Banner')->withSuccess('Perfecto! Registro Actualizado Correctamente.');
 
         //return'Registro actualizado';
     }

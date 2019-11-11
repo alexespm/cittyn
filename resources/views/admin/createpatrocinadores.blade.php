@@ -27,11 +27,11 @@
 			<div class="row">
 			  	<div class="col-sm-2 imgUp">
 			    	<div class="imagePreview"></div>
-			    	
 					<label class="btn btn-primary">
 						Elige una Imagen
-						<input type="file" class="uploadFile img" value="Upload Photo" name="imagen1" id="imagen1" style="width: 0px;height: 0px;overflow: hidden;"required />
+						<input type="file" class="uploadFile img" value="Upload Photo" name="imagen1" id="imagen1" style="width: 0px;height: 0px;overflow: hidden;">
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen1') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->
@@ -48,9 +48,9 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen
-						<input type="file" class="uploadFile img" value="Upload Photo" name="imagen2" id="imagen2" style="width: 0px;height: 0px;overflow: hidden;"required />
-						
+						<input type="file" class="uploadFile img" value="Upload Photo" name="imagen2" id="imagen2" style="width: 0px;height: 0px;overflow: hidden;">
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen2') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->
@@ -67,9 +67,9 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen
-						<input type="file" class="uploadFile img" value="Upload Photo" name="imagen3" id="imagen3" style="width: 0px;height: 0px;overflow: hidden;"required />
-						
+						<input type="file" class="uploadFile img" value="Upload Photo" name="imagen3" id="imagen3" style="width: 0px;height: 0px;overflow: hidden;">				
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen3') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->
@@ -80,11 +80,6 @@
 @endsection
 
 @section('javascript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
-    <script>
-        $('#color').colorpicker();
-    </script>
-
     <script type="text/javascript">
 	    	$(".imgAdd").click(function(){
 	  $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');

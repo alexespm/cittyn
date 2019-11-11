@@ -8,7 +8,6 @@
 @stop
 
 @section('content')
-
 	<form method="POST" action="{{ route('Patrocinadores.update', $Patrocinador->id) }}" files="true" enctype="multipart/form-data"> 
 	@method('PUT')	
 	@csrf
@@ -20,8 +19,8 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen1" id="imagen1" style="width: 0px;height: 0px;overflow: hidden;">
-						
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen1') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->
@@ -38,8 +37,8 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen2" id="imagen2" style="width: 0px;height: 0px;overflow: hidden;">
-						
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen2') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->
@@ -56,8 +55,8 @@
 			    	
 					<label class="btn btn-primary">
 						Elige una Imagen<input type="file" class="uploadFile img" value="Upload Photo" name="imagen3" id="imagen3" style="width: 0px;height: 0px;overflow: hidden;">
-						
 					</label>
+					<span class="text-danger">{{ $errors->first('imagen3') }}</span>
 			  	</div><!-- col-2 -->
 			  	<i class="fa fa-plus imgAdd"></i>
 			 </div><!-- row -->
